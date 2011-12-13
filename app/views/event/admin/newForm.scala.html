@@ -1,0 +1,10 @@
+@(eventForm: Form[kcacup.form.EventForm.Data])
+
+@import helper._
+
+@admin.main("New Event") {
+
+  @form(action = kcacup.controllers.routes.EventAdmin.create()) {
+    @baseForm(eventForm)
+  }
+}

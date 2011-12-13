@@ -1,0 +1,16 @@
+@(title: String)(well: Html)(tableHeaders: Html)(tableRows: Html)
+
+@admin.main(title) {
+  <div class="well">@well</div>
+
+  <table class="zebra-striped">
+    @for(tag <- "thead" :: "tfoot" :: Nil) {
+      <@tag>
+          <tr>@tableHeaders</tr>
+      </@tag>
+    }
+    <tbody>
+    @tableRows
+    </tbody>
+  </table>
+}

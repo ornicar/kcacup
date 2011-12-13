@@ -1,0 +1,6 @@
+[submodule "public/bootstrap"]
+	path = public/bootstrap
+	url = https://github.com/twitter/bootstrap
+[submodule "public/chosen"]
+	path = public/chosen
+	url = https://github.com/harvesthq/chosen

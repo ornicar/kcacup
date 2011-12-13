@@ -1,0 +1,13 @@
+@(eventForm: Form[kcacup.form.EventForm.Data])
+
+@import helper._
+
+@inputText(eventForm("name"), 'class -> "span10")(admin.bootstrapInput)
+@inputText(eventForm("text"), 'class -> "span8")(admin.bootstrapInput)
+@inputText(eventForm("levelFile"))(admin.bootstrapInput)
+@inputText(eventForm("imageFile"))(admin.bootstrapInput)
+@inputDate(eventForm("endsAt"))(admin.bootstrapInput)
+<div class="actions">
+  <button type="submit" name="submit" class="btn primary submit">Save</button>
+  <a class="btn" href="@kcacup.controllers.routes.EventAdmin.index()">Cancel</a>
+</div>

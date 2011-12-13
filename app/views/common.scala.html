@@ -1,0 +1,29 @@
+@(metaTitle: Html)(stylesheets: Html)(javascripts: Html)(body: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>@metaTitle</title>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="/assets/chosen/chosen/chosen.css" rel="stylesheet" />-->
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/common.css" />
+    @stylesheets
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+  </head>
+
+  <body>
+
+    @body
+
+    <script src="/assets/javascripts/jquery-1.7.1.min.js"></script>
+    <!--<script src="/assets/chosen/chosen/chosen.jquery.min.js"></script>-->
+    @javascripts
+  </body>
+</html>

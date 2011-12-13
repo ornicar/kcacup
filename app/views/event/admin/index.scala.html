@@ -1,0 +1,54 @@
+@(events: List[kcacup.models.Event])
+
+@import kcacup.StringHelper._
+
+@well = {
+  <a class="btn primary" href="@kcacup.controllers.routes.EventAdmin.newForm">
+    New Event
+  </a>
+}
+
+@tableHeaders = {
+  <th>Image</th>
+  <th>Name</th>
+  <th>Level</th>
+  <th>Creation</th>
+  <th>Duration</th>
+  <th>End</th>
+}
+
+@error(t: String) = {
+  <span class="error">@t</span>
+}
+@success(t: Any) = {
+  <span class="success">@t</span>
+}
+
+@admin.list("Events")(well)(tableHeaders) {
+  @for(event <- events) {
+    <tr>
+      <td><img src="@routes.Assets.at(event.image.publicPath)" witdh="100" height="60" /></td>
+      <td>
+        <a href="@kcacup.controllers.routes.EventAdmin.editForm(event.slug)">
+          @event.name
+        </a>
+      </td>
+      <td>@event.level.metadata.fold(error, success)</td>
+      <td>
+        @formatDate(event.createdAt)
+      </td>
+      <td>
+        @formatDuration(event.duration)
+      </td>
+      <td>
+        @event.remainingInterval.map("in " + formatInterval(_)).getOrElse(formatDate(event.endsAt))
+      </td>
+      <td>
+        <a href="@kcacup.controllers.routes.EventAdmin.editForm(event.slug)">
+          edit
+        </a>
+        <a class="delete jsconfirm" href="@kcacup.controllers.routes.EventAdmin.delete(event.slug)">delete</a>
+      </td>
+    </tr>
+  }
+}

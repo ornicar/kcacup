@@ -1,0 +1,16 @@
+.delete {
+  color: #aaa;
+  margin-left: 1em;
+}
+
+table td {
+  vertical-align: middle;
+}
+
+.success {
+  color: #008800;
+}
+.error {
+  color: #aa4444;
+  font-weight: bold;
+}

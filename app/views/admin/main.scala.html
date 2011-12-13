@@ -1,0 +1,41 @@
+@(title: String)(content: Html)
+
+@metaTitle = {
+  KcaCup Admin - @title
+}
+
+@stylesheets = {
+  <link href="/assets/stylesheets/admin.css" rel="stylesheet">
+}
+
+@javascripts = {
+  <script src="/assets/javascripts/admin.js"></script>
+}
+
+@body = {
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <a class="brand" href="@kcacup.controllers.routes.Main.admin()">KcaCup Admin</a>
+        <ul class="nav">
+          <li><a href="@kcacup.controllers.routes.EventAdmin.index()">Events</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+
+    <h2>@title</h2>
+
+    @content
+
+    <footer>
+      <p>KcaCup Admin 2011</p>
+    </footer>
+
+  </div> <!-- /container -->
+}
+
+@common(metaTitle)(stylesheets)(javascripts)(body)

@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           kcacup.controllers.Main.index()
+
+GET     /admin                      kcacup.controllers.Main.admin()
+
+GET     /admin/event                kcacup.controllers.EventAdmin.index()
+
+GET     /admin/event/new            kcacup.controllers.EventAdmin.newForm()
+
+POST    /admin/event/new            kcacup.controllers.EventAdmin.create()
+
+GET     /admin/event/:slug          kcacup.controllers.EventAdmin.editForm(slug: String)
+
+POST    /admin/event/:slug          kcacup.controllers.EventAdmin.update(slug: String)
+
+GET     /admin/event/:slug/delete   kcacup.controllers.EventAdmin.delete(slug: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
