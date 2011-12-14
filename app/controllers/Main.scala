@@ -4,12 +4,13 @@ package controllers
 import play.api._
 import play.api.mvc._
 
-object Main extends Controller {
+object Main extends Controller with Front {
 
-  //private val env = new Env(Play.unsafeApplication.configuration)
+  private val env = new Env(Play.unsafeApplication.configuration)
 
   def index = Action {
-    Ok(views.html.index())
+    val events = env.eventRepo.findAll
+    Ok(views.html.index(events))
   }
 
   def admin = Action {

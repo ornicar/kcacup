@@ -1,8 +1,9 @@
 package kcacup
 package models
 
-import org.scala_tools.time.Imports._
 import java.text.SimpleDateFormat
+import java.util.Date
+import com.twitter.util.Time
 
 trait Chronological extends Ordered[Chronological] {
 

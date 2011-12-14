@@ -3,9 +3,7 @@ package models
 
 import java.io.File
 
-trait PublicFile {
-
-  def filename: String
+case class PublicFile(filename: String) {
 
   def publicPath = "upload/" + filename
 
@@ -14,4 +12,6 @@ trait PublicFile {
   def file = new File(path)
 
   def exists = file.exists && !file.isDirectory
+
+  override def toString = publicPath
 }

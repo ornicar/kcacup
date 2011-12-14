@@ -5,6 +5,6 @@
 @admin.main("Edit Event") {
 
   @form(action = kcacup.controllers.routes.EventAdmin.update(event.slug)) {
-    @baseForm(eventForm)
+    @baseForm(eventForm, event.some)
   }
 }

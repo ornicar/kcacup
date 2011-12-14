@@ -14,3 +14,9 @@ table td {
   color: #aa4444;
   font-weight: bold;
 }
+form .form_info {
+  margin-left: 150px;
+  background: #f4f4f4;
+  padding: 5px;
+  border: 1px solid #eaeaea;
+}

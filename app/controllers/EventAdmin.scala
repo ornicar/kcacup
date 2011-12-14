@@ -51,11 +51,11 @@ object EventAdmin extends Controller {
 
   private def saveAndRedirect(event: Event) = {
     env.eventRepo upsert event
-    redirectIndex
+    Redirect(kcacup.controllers.routes.EventAdmin.editForm(event.slug))
   }
 
-  private def redirectIndex =
-    Redirect(kcacup.controllers.routes.EventAdmin.index)
+  protected def redirectIndex =
+    Results.Redirect(kcacup.controllers.routes.Main.admin)
 
   private def findEvent(slug: String) = env.eventRepo findOneBySlug slug
 

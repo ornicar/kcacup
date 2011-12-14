@@ -19,5 +19,11 @@ POST    /admin/event/:slug          kcacup.controllers.EventAdmin.update(slug: S
 
 GET     /admin/event/:slug/delete   kcacup.controllers.EventAdmin.delete(slug: String)
 
+GET     /register                   kcacup.controllers.Player.newForm()
+
+#GET     /event                      kcacup.controllers.Event.index()
+
+GET     /event/:slug                kcacup.controllers.Event.view(slug: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

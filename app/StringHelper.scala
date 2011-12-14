@@ -23,6 +23,8 @@ trait StringHelper {
 
   def formatDuration(duration: Duration) = pluralize("day", duration.getStandardDays.toInt)
 
+  def formatTime(duration: Duration) = duration.toString
+
   def pluralize(s: String, n: Int) = "%d %s%s".format(n, s, if (n > 1) "s" else "")
 
   private lazy val dateFormatter = DateTimeFormat forPattern "dd MMMM yyy"

@@ -3,7 +3,8 @@ package models
 
 import com.novus.salat.annotations._
 import com.mongodb.casbah.Imports._
-import org.scala_tools.time.Imports._
+import java.util.Date
+import com.twitter.util.Time
 
 case class Event(
 
@@ -11,15 +12,17 @@ case class Event(
 
   text: String,
 
-  createdAt: DateTime,
+  createdAtDate: Date,
 
-  endsAt: DateTime,
+  days: Int,
 
-  levelFile: String,
-
-  imageFile: String,
+  image: PublicFile,
 
   slug: String,
+
+  level: Level,
+
+  replays: List[Replay] = Nil,
 
   @Key("_id") id: Option[ObjectId] = None
 
@@ -27,7 +30,9 @@ case class Event(
 
   def standing = Standing(List(this), 0)
 
-  def image = Image(imageFile)
+  def bestReplay: Option[Replay] = None
 
-  def level = Level(levelFile)
+  def top(nb: Int) = sortedReplays take nb
+
+  def sortedReplays = replays sortBy (_.seconds)
 }

@@ -22,7 +22,7 @@ class Env(configuration: Configuration) {
   lazy val fixture = new Fixture(eventRepo)
 
   // load fixture if DB is empty
-  if (0 == eventRepo.count()) fixture()
+  if (true || 0 == eventRepo.count()) fixture()
 
   private lazy val mongoConnection = MongoConnection(
     conf("mongo.host") | "localhost",

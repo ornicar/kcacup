@@ -12,7 +12,7 @@
   <th>Image</th>
   <th>Name</th>
   <th>Level</th>
-  <th>Creation</th>
+  <th>Replays</th>
   <th>Duration</th>
   <th>End</th>
 }
@@ -33,10 +33,15 @@
           @event.name
         </a>
       </td>
-      <td>@event.level.metadata.fold(error, success)</td>
+      <td>@event.level.name</td>
       <td>
-        @formatDate(event.createdAt)
-      </td>
+        <ol>
+        @for(replay <- event.top(5)) {
+          <li>
+            @replay.username (@replay.seconds)
+          </li>
+        }
+        </ol>
       <td>
         @formatDuration(event.duration)
       </td>

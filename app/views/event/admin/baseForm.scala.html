@@ -1,13 +1,26 @@
-@(eventForm: Form[kcacup.form.EventForm.Data])
+@(eventForm: Form[kcacup.form.EventForm.Data], event: Option[kcacup.models.Event])
 
 @import helper._
 
+@actions = {
+  <div class="actions">
+    <button type="submit" name="submit" class="btn primary submit">Save</button>
+    <a class="btn" href="@kcacup.controllers.routes.EventAdmin.index()">Cancel</a>
+  </div>
+}
+
+@actions
 @inputText(eventForm("name"), 'class -> "span10")(admin.bootstrapInput)
 @inputText(eventForm("text"), 'class -> "span8")(admin.bootstrapInput)
+@inputDate(eventForm("days"))(admin.bootstrapInput)
+@event.map { e =>
+  <div class="form_info">
+    ID: @e.level.id, Name: @e.level.name, Objects: @e.level.nbObjects
+  </div>
+}
 @inputText(eventForm("levelFile"))(admin.bootstrapInput)
+@event.map { e =>
+  <img class="form_info" src="@routes.Assets.at(e.image.publicPath)" height="200" />
+}
 @inputText(eventForm("imageFile"))(admin.bootstrapInput)
-@inputDate(eventForm("endsAt"))(admin.bootstrapInput)
-<div class="actions">
-  <button type="submit" name="submit" class="btn primary submit">Save</button>
-  <a class="btn" href="@kcacup.controllers.routes.EventAdmin.index()">Cancel</a>
-</div>
+@actions
