@@ -4,15 +4,23 @@ package form
 import play.api.data._
 import validation.Constraints._
 
-object LoginForm {
+import repo.UserRepo
 
-  lazy val form = Form(
+class LoginForm(userRepo: UserRepo) {
+
+  def form = Form(
     of(Data.apply _, Data.unapply _)(
-      "username" -> requiredText
-    )
+      "username" -> requiredText,
+      "password" -> requiredText
+    ) verifying("Invalid user name or password", {
+      data => data.user.isDefined
+    })
   )
 
-  case class Data(
-    username: String
-  )
+  case class Data(username: String, password: String) {
+
+    //val user = userRepo.findOneLogin(username, password)
+    val user = userRepo.findOneByUsername(username)
+  }
+
 }

@@ -8,9 +8,18 @@ import com.novus.salat.dao._
 import com.mongodb.casbah.MongoCollection
 import com.mongodb.casbah.Imports._
 
-class PlayerRepo(collection: MongoCollection)
-  extends SalatDAO[Player, String](collection)
+class UserRepo(collection: MongoCollection)
+  extends SalatDAO[User, String](collection)
   with Repo {
 
   def findAll = find(DBObject()).toList
+
+  def findOneByUsername(username: String) = findOne(
+    DBObject("_id" -> username)
+  )
+
+  def findOneLogin(username: String, password: String) = for {
+    user <- findOneByUsername(username)
+    if (user comparePassword password)
+  } yield user
 }

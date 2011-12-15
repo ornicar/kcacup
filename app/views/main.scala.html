@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(user: Option[kcacup.models.User])(content: Html)
 
 @metaTitle = {
   KcaCup - @title
@@ -12,6 +12,15 @@
   <script src="/assets/javascripts/main.js"></script>
 }
 
+@loginForm = {
+  <a class="register btn primary pull-right" href="@kcacup.controllers.routes.User.newForm()">Register</a>
+  <form action="@kcacup.controllers.routes.Auth.login()" method="POST" class="pull-right">
+    <input name="username" class="span3" type="text" placeholder="Username" />
+    <input name="password" class="span3" type="password" placeholder="Password" />
+    <button type="submit" class="btn info">Login</button>
+  </form>
+  }
+
 @body = {
   <div class="topbar">
     <div class="fill">
@@ -20,12 +29,7 @@
         <ul class="nav">
           <!--<li class="active"><a href="#">Home</a></li>-->
         </ul>
-        <a class="register btn primary pull-right" href="@kcacup.controllers.routes.Player.newForm()">Register</a>
-        <form class="pull-right">
-          <input class="span3" type="text" placeholder="Username" />
-          <input class="span3" type="password" placeholder="Password" />
-          <button type="submit" class="btn info">Login</button>
-        </form>
+        @user.map(_.username).getOrElse(loginForm)
       </div>
     </div>
 

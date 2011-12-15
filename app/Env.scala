@@ -2,6 +2,7 @@ package kcacup
 
 import play.api.Configuration
 import repo._
+import form._
 import com.mongodb.casbah.MongoConnection
 import com.mongodb.casbah.commons.conversions.scala._
 
@@ -15,12 +16,14 @@ class Env(configuration: Configuration) {
 
   lazy val replayRepo = new ReplayRepo(mongodb("replay"))
 
-  lazy val playerRepo = new PlayerRepo(mongodb("player"))
+  lazy val userRepo = new UserRepo(mongodb("user"))
 
-  lazy val fixture = new Fixture(eventRepo)
+  lazy val loginForm = new LoginForm(userRepo)
+
+  lazy val fixture = new Fixture(eventRepo, userRepo)
 
   // load fixture if DB is empty
-  if (true || 0 == eventRepo.count()) fixture()
+  if (false || 0 == eventRepo.count()) fixture()
 
   private lazy val mongoConnection = MongoConnection(
     conf("mongo.host") | "localhost",

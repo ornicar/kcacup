@@ -40,5 +40,5 @@ case class Event(
 
   def usernames = (replays map (_.username)).distinct
 
-  def nbPlayers = usernames.size
+  def nbUsers = usernames.size
 }

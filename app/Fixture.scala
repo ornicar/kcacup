@@ -11,11 +11,25 @@ import com.twitter.conversions.time._
  * Initial set of data to be imported
  * in the sample application.
  */
-class Fixture(eventRepo: EventRepo) {
+class Fixture(eventRepo: EventRepo, userRepo: UserRepo) {
 
   def date(str: String) = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(str)
 
-  def apply() = {
+  def apply() {
+    users()
+    events()
+  }
+
+  def users() {
+
+    userRepo remove DBObject()
+
+    for(name <- "thibault toto anp Pablo adi Bjoern Eddi GRob J Kazan LazY Lukazz Madness NigthMar Pab romy4 ville_j Zweq" split " ") {
+      userRepo save User(name, "neio")
+    }
+  }
+
+  def events() {
 
     def event(
       name: String,
@@ -26,7 +40,7 @@ class Fixture(eventRepo: EventRepo) {
       replays: Seq[(String, String)]
     ) = Event(
       name = name,
-      text = "So far, there has been two Across and three Elma World Cups which all collected hundreds of players. The basic idea of the cups is that we publish here a level once in a week or two, and you try to get as good time as your skills just allow you to get and then send the replay of your drive to us by a certain deadline, according to the rules. The results of the event are done some hours later and the better time you had, the better is of course your placement and also the more points you will get.",
+      text = "So far, there has been two Across and three Elma World Cups which all collected hundreds of users. The basic idea of the cups is that we publish here a level once in a week or two, and you try to get as good time as your skills just allow you to get and then send the replay of your drive to us by a certain deadline, according to the rules. The results of the event are done some hours later and the better time you had, the better is of course your placement and also the more points you will get.",
       createdAtDate = (Time.now - (createdAt * 7).days).toDate,
       days = weeks * 7,
       level = Level(PublicFile("lev/" + lev)).fold(e => { println(e); sys.exit() }, identity),

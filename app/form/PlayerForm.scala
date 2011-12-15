@@ -6,7 +6,7 @@ import validation.Constraints._
 
 import models._
 
-object PlayerForm {
+object UserForm {
 
   lazy val form = Form(
     of(Data.apply _, Data.unapply _)(

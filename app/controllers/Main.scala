@@ -6,11 +6,9 @@ import play.api.mvc._
 
 object Main extends Controller with Front {
 
-  private val env = new Env(Play.unsafeApplication.configuration)
-
-  def index = Action {
+  def index = Public { user => request =>
     val events = env.eventRepo.findAll
-    Ok(views.html.index(events))
+    Ok(views.html.index(user, events))
   }
 
   def admin = Action {

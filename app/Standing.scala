@@ -10,5 +10,5 @@ case class Standing (
 
 ) {
 
-  def top(max: Int): List[(Player, Int)] = List()
+  def top(max: Int): List[(User, Int)] = List()
 }

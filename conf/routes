@@ -19,7 +19,9 @@ POST    /admin/event/:slug          kcacup.controllers.EventAdmin.update(slug: S
 
 GET     /admin/event/:slug/delete   kcacup.controllers.EventAdmin.delete(slug: String)
 
-GET     /register                   kcacup.controllers.Player.newForm()
+GET     /register                   kcacup.controllers.User.newForm()
+
+POST    /login                      kcacup.controllers.Auth.login()
 
 #GET     /event                      kcacup.controllers.Event.index()
 

@@ -13,14 +13,16 @@ object ApplicationBuild extends Build {
     "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT",
     "org.scalaz" %% "scalaz-core" % "6.0.3",
     "org.slf4j" % "slf4j-nop" % "1.6.4",
-    "com.twitter" % "util-core" % "1.12.4"
+    "com.twitter" % "util-core" % "1.12.4",
+    "com.github.nycto" %% "hasher" % "0.1-SNAPSHOT"
   )
 
   val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
     resolvers ++= Seq(
       "repo.novus rels" at "http://repo.novus.com/releases/",
       "repo.novus snaps" at "http://repo.novus.com/snapshots/",
-      "twitter.com" at "http://maven.twttr.com/"
+      "twitter.com" at "http://maven.twttr.com/",
+      "iliaz.com" at "http://scala.iliaz.com/"
     )
   )
 

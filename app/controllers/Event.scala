@@ -8,11 +8,9 @@ import models._
 
 object Event extends Controller with Front {
 
-  private val env = new Env(Play.unsafeApplication.configuration)
-
-  def view(slug: String) = Action {
+  def view(slug: String) = Public { user => request =>
     findEvent(slug) map { event =>
-      Ok(views.html.event.view(event))
+      Ok(views.html.event.view(user, event))
     } getOrElse BadRequest
   }
 

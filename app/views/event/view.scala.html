@@ -1,14 +1,14 @@
-@(event: kcacup.models.Event)
+@(user: Option[kcacup.models.User], event: kcacup.models.Event)
 
 @import kcacup.Templating._
 
-@main(event.name) {
+@main(event.name)(user) {
 
 <div class="page-header">
   <h1>@event.name</h1>
 </div>
 <p>
-  @event.nbPlayers players participate.
+  @event.nbUsers users participate.
   @event.bestReplay.map { replay =>
     The best time so far is @time(replay)
   }
