@@ -7,8 +7,6 @@ import com.mongodb.casbah.commons.conversions.scala._
 
 class Env(configuration: Configuration) {
 
-  RegisterJodaTimeConversionHelpers()
-
   lazy val eventRepo = new EventRepo(mongodb("event"))
 
   lazy val postRepo = new PostRepo(mongodb("post"))

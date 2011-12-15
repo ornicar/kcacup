@@ -4,7 +4,7 @@ package form
 import play.api.data._
 import format.Formats._
 import validation.Constraints._
-import org.scala_tools.time.Imports._
+import java.util.Date
 
 import models._
 
@@ -32,7 +32,7 @@ object EventForm {
       text = text,
       level = Level(PublicFile(levelFile)).right.get,
       image = PublicFile(imageFile),
-      createdAt = DateTime.now,
+      createdAtDate = new Date,
       days = days,
       slug = StringHelper slugify name
     )

@@ -11,6 +11,8 @@ case class PublicFile(filename: String) {
 
   def file = new File(path)
 
+  def name = filename.split("/").last
+
   def exists = file.exists && !file.isDirectory
 
   override def toString = publicPath

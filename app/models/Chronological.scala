@@ -7,12 +7,13 @@ import com.twitter.util.Time
 
 trait Chronological extends Ordered[Chronological] {
 
-  def createdAt: DateTime
+  def createdAtDate: Date
+
+  def createdAt: Time = Time(createdAtDate)
 
   def compare(other: Chronological) =
-    //this.createdAt.getTime compare other.createdAt.getTime
     this.createdAt compare other.createdAt
 
   def showCreatedAt =
-    new SimpleDateFormat("dd MMMM yyy") format createdAt
+    new SimpleDateFormat("dd MMMM yyy") format createdAtDate
 }

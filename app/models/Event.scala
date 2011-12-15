@@ -30,9 +30,15 @@ case class Event(
 
   def standing = Standing(List(this), 0)
 
-  def bestReplay: Option[Replay] = None
+  def bestReplay: Option[Replay] = sortedReplays.headOption
 
   def top(nb: Int) = sortedReplays take nb
 
-  def sortedReplays = replays sortBy (_.seconds)
+  lazy val sortedReplays = replays sortBy (_.centis)
+
+  def recentReplays(nb: Int) = replays sortBy (_.createdAtDate) take nb
+
+  def usernames = (replays map (_.username)).distinct
+
+  def nbPlayers = usernames.size
 }

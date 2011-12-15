@@ -1,0 +1,29 @@
+@(events: List[kcacup.models.Event])
+
+@import kcacup.Templating._
+
+<table>
+  @for(event <- events) {
+    <tr>
+      <td>
+        <a href="@kcacup.controllers.routes.Event.view(event.slug)">
+          @event.name
+        </a>
+      </td>
+      <td>
+        @if(event.ended) {
+          <span class="label">Closed</span>
+          @event.bestReplay.map { replay =>
+            @replay.username
+          }
+        } else {
+          <span class="label success">OPEN</span>
+          Ends @formatDistance(event.endsAt)
+        }
+      </td>
+      <td>
+        @event.bestReplay.map(_.showTime).getOrElse("No time")
+      </td>
+    </tr>
+  }
+</table>

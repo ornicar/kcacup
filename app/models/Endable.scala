@@ -1,21 +1,20 @@
 package kcacup
 package models
 
-import org.scala_tools.time.Imports._
+import com.twitter.util.Time
+import com.twitter.util.Duration
+import com.twitter.conversions.time._
 
 trait Endable extends Chronological {
 
   def days: Int
 
-  def ended: Boolean = DateTime.now >= endsAt
+  def ended: Boolean = Time.now.inMilliseconds >= endsAt.inMilliseconds
 
-  def endsAt: DateTime = createdAt + days.days
+  def endsAt: Time = createdAt + days.days
 
-  def duration: Duration = (createdAt to endsAt).toDuration
-
-  def remainingInterval: Option[Interval] =
-    if (ended) None else (DateTime.now to endsAt).some
+  def duration: Duration = createdAt until endsAt
 
   def remainingDuration: Option[Duration] =
-    remainingInterval map (_.toDuration)
+    if (ended) None else (Time.now until endsAt).some
 }

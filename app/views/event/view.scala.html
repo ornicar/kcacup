@@ -1,0 +1,47 @@
+@(event: kcacup.models.Event)
+
+@import kcacup.Templating._
+
+@main(event.name) {
+
+<div class="page-header">
+  <h1>@event.name</h1>
+</div>
+<p>
+  @event.nbPlayers players participate.
+  @event.bestReplay.map { replay =>
+    The best time so far is @time(replay)
+  }
+</p>
+
+<div class="row level_view">
+  <div class="span10">
+    <img class="level_image" src="@routes.Assets.at(event.image.publicPath)" width="568px" />
+    <h3>Best Times</h3>
+    <table>
+      @for(replay <- event.replays) {
+      <tr>
+        <td>@replay.username</td>
+        <td>@time(replay)</td>
+        <td>@formatDistance(replay.createdAt)</td>
+      </tr>
+      }
+    </table>
+  </div>
+  <div class="span6">
+    <a class="btn large primary" href="@routes.Assets.at(event.level.file.publicPath)">
+      Download @event.level.file.name
+    </a>
+    <h3>Recent Times</h3>
+    <table>
+      @for(replay <- event.recentReplays(10)) {
+      <tr>
+        <td>@replay.username</td>
+        <td>@time(replay)</td>
+        <td>@formatDistance(replay.createdAt)</td>
+      </tr>
+      }
+    </table>
+  </div>
+</div>
+}

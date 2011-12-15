@@ -1,6 +1,6 @@
 @(events: List[kcacup.models.Event])
 
-@import kcacup.StringHelper._
+@import kcacup.Templating._
 
 @well = {
   <a class="btn primary" href="@kcacup.controllers.routes.EventAdmin.newForm">
@@ -38,15 +38,19 @@
         <ol>
         @for(replay <- event.top(5)) {
           <li>
-            @replay.username (@replay.seconds)
+            @replay.username @time(replay)
           </li>
         }
         </ol>
       <td>
-        @formatDuration(event.duration)
+        @event.days days
       </td>
       <td>
-        @event.remainingInterval.map("in " + formatInterval(_)).getOrElse(formatDate(event.endsAt))
+        @if(event.ended) {
+          @formatDate(event.endsAt)
+        } else {
+          Ends @formatDistance(event.endsAt)
+        }
       </td>
       <td>
         <a href="@kcacup.controllers.routes.EventAdmin.editForm(event.slug)">

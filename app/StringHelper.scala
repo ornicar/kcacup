@@ -1,7 +1,12 @@
 package kcacup
 
-import org.scala_tools.time.Imports._
-import org.joda.time.format.PeriodFormatterBuilder
+import com.twitter.util.Time
+import com.twitter.util.Duration
+import com.twitter.conversions.time._
+import scala.math._
+import java.text.SimpleDateFormat
+import java.util.Date
+import net.sf.jfuzzydate.{FuzzyDateFormat, FuzzyDateFormatter}
 
 object StringHelper extends StringHelper
 
@@ -17,26 +22,11 @@ trait StringHelper {
 
   def slugify(text: String): String = Slugifier.slugify(text)
 
-  def formatDate(date: DateTime) = dateFormatter print date
+  def formatDate(date: Time) = date format "dd MMMM yyy"
 
-  def formatInterval(interval: Interval) = periodFormatter print interval.toPeriod
+  def formatDistance(date: Date) = fuzzyFormatter formatDistance date
 
-  def formatDuration(duration: Duration) = pluralize("day", duration.getStandardDays.toInt)
-
-  def formatTime(duration: Duration) = duration.toString
+  private val fuzzyFormatter = FuzzyDateFormat.getInstance
 
   def pluralize(s: String, n: Int) = "%d %s%s".format(n, s, if (n > 1) "s" else "")
-
-  private lazy val dateFormatter = DateTimeFormat forPattern "dd MMMM yyy"
-
-  private lazy val periodFormatter = new PeriodFormatterBuilder()
-      .appendMonths()
-      .appendSuffix(" month", " months")
-      .appendSeparator(", ")
-      .appendWeeks()
-      .appendSuffix(" week", " weeks")
-      .appendSeparator(" and ")
-      .appendDays()
-      .appendSuffix(" day", " days")
-      .toFormatter()
 }

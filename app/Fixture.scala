@@ -3,7 +3,9 @@ package kcacup
 import models._
 import repo._
 import com.mongodb.casbah.Imports._
-import org.scala_tools.time.Imports._
+import com.twitter.util.Time
+import com.twitter.util.Duration
+import com.twitter.conversions.time._
 
 /**
  * Initial set of data to be imported
@@ -25,7 +27,7 @@ class Fixture(eventRepo: EventRepo) {
     ) = Event(
       name = name,
       text = "So far, there has been two Across and three Elma World Cups which all collected hundreds of players. The basic idea of the cups is that we publish here a level once in a week or two, and you try to get as good time as your skills just allow you to get and then send the replay of your drive to us by a certain deadline, according to the rules. The results of the event are done some hours later and the better time you had, the better is of course your placement and also the more points you will get.",
-      createdAt = DateTime.now - createdAt.weeks,
+      createdAtDate = (Time.now - (createdAt * 7).days).toDate,
       days = weeks * 7,
       level = Level(PublicFile("lev/" + lev)).fold(e => { println(e); sys.exit() }, identity),
       image = PublicFile(img),
@@ -35,7 +37,7 @@ class Fixture(eventRepo: EventRepo) {
           Replay(
             username = username,
             file = PublicFile("rec/" + file),
-            createdAt = DateTime.now - createdAt.weeks + 3.days
+            createdAt = Time.now - (createdAt * 7).days + 3.days
           ).fold(e => { println(e); sys.exit() }, identity)
       }).toList
     )
@@ -65,6 +67,22 @@ class Fixture(eventRepo: EventRepo) {
       event("The George Abitbol gap", 0, 2, "WolfI03.lev", "george.jpg", Seq(
         "WolfI03_599tot.rec" -> "toto",
         "WolfI03_599vil.rec" -> "Pablo"
+      )),
+      event("Guybrush way to heaven", 1, 2, "MC301.lev", "lev6.gif", Seq(
+        "MC301adi.rec" -> "adi",
+        "MC301Bjoern.rec" -> "Bjoern",
+        "MC301Eddi.rec" -> "Eddi",
+        "MC301GRob.rec" -> "GRob",
+        "MC301J-sim.rec" -> "J",
+        "MC301Kazan.rec" -> "Kazan",
+        "MC301LazY.rec" -> "LazY",
+        "MC301Lukazz.rec" -> "Lukazz",
+        "MC301Madness.rec" -> "Madness",
+        "MC301NightMar.rec" -> "NigthMar",
+        "MC301Pab.rec" -> "Pab",
+        "MC301romy4.rec" -> "romy4",
+        "MC301ville_j.rec" -> "ville_j",
+        "MC301Zweq.rec" -> "Zweq"
       ))
     ) foreach eventRepo.save
   }

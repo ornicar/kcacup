@@ -20,3 +20,17 @@
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
+
+.level_view img {
+  background: #f4f4f4;
+  padding: 5px;
+  border: 1px solid #eaeaea;
+}
+.level_view .btn.primary {
+  margin-bottom: 7px;
+}
+
+.time {
+  font-family: monospace;
+  font-size: 15px;
+}

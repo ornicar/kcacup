@@ -3,7 +3,8 @@ package object kcacup
   with    scalaz.Equals
   with    scalaz.MABs
   with    scalaz.MAs
-  with    scalaz.Options {
+  with    scalaz.Options
+  with    Conversions {
 
   // Represents a A computation that can have failed with Error
   type Eithor[A] = Either[Error, A]

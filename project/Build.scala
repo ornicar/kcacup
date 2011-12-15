@@ -13,7 +13,6 @@ object ApplicationBuild extends Build {
     "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT",
     "org.scalaz" %% "scalaz-core" % "6.0.3",
     "org.slf4j" % "slf4j-nop" % "1.6.4",
-    "joda-time" % "joda-time" % "2.0",
     "com.twitter" % "util-core" % "1.12.4"
   )
 
