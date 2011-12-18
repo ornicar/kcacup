@@ -1,6 +1,6 @@
 package kcacup
 
-import hasher.Implicits._
+import com.roundeights.hasher.Implicits._
 
 object Hash {
 
@@ -8,6 +8,5 @@ object Hash {
 
   def encode(str: String) = str.salt(salt).sha1
 
-  def compare(password: String, hash: String) =
-    encode(password) == hash
+  def compare(password: String, hash: String) = encode(password) == hash
 }

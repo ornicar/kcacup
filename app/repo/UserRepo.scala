@@ -14,12 +14,18 @@ class UserRepo(collection: MongoCollection)
 
   def findAll = find(DBObject()).toList
 
+  def exists(username: String) = count(
+    DBObject("_id" -> normalizeUsername(username))
+  ) != 0
+
   def findOneByUsername(username: String) = findOne(
-    DBObject("_id" -> username)
+    DBObject("_id" -> normalizeUsername(username))
   )
 
   def findOneLogin(username: String, password: String) = for {
     user <- findOneByUsername(username)
     if (user comparePassword password)
   } yield user
+
+  def normalizeUsername = User normalizeUsername _
 }

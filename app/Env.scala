@@ -20,6 +20,8 @@ class Env(configuration: Configuration) {
 
   lazy val loginForm = new LoginForm(userRepo)
 
+  lazy val userForm = new UserForm(userRepo)
+
   lazy val fixture = new Fixture(eventRepo, userRepo)
 
   // load fixture if DB is empty

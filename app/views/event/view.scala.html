@@ -4,11 +4,22 @@
 
 @main(event.name)(user) {
 
-<div class="page-header">
-  <h1>@event.name</h1>
+<div class="page-header level_view">
+  <h1>
+    @event.name
+    <small>
+      @if(event.ended) {
+        <span class="label">Closed</span>
+        @formatDate(event.endsAt)
+      } else {
+        <span class="label success">OPEN</span>
+        Ends @formatDistance(event.endsAt)
+      }
+    </small>
+  </h1>
 </div>
 <p>
-  @event.nbUsers users participate.
+  @event.nbUsers players participate.
   @event.bestReplay.map { replay =>
     The best time so far is @time(replay)
   }

@@ -1,6 +1,21 @@
-@(user: Option[kcacup.models.User])
+@(user: Option[kcacup.models.User], userForm: Form[kcacup.form.UserForm.Data])
+
+@import helper._
 
 @main("Register")(user) {
 
+<div class="page-header">
+  <h1>
+    Register
+    <small>You'll need it to submit your times</small>
+  </h1>
+</div>
+@form(action = kcacup.controllers.routes.User.create()) {
+  @inputText(userForm("username"))(admin.bootstrapInput)
+  @inputText(userForm("password"), 'type -> "password")(admin.bootstrapInput)
+  <div class="actions">
+    <button type="submit" name="submit" class="btn primary submit">Done!</button>
+  </div>
+}
 
 }

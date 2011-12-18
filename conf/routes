@@ -21,7 +21,11 @@ GET     /admin/event/:slug/delete   kcacup.controllers.EventAdmin.delete(slug: S
 
 GET     /register                   kcacup.controllers.User.newForm()
 
+POST    /register                   kcacup.controllers.User.create()
+
 POST    /login                      kcacup.controllers.Auth.login()
+
+GET     /logout                     kcacup.controllers.Auth.logout()
 
 #GET     /event                      kcacup.controllers.Event.index()
 

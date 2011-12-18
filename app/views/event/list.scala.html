@@ -22,7 +22,7 @@
         }
       </td>
       <td>
-        @event.bestReplay.map(_.showTime).getOrElse("No time")
+        @event.bestReplay.map(r => time(r.showTime)).getOrElse("No time")
       </td>
     </tr>
   }

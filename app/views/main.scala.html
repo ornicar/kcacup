@@ -19,7 +19,18 @@
     <input name="password" class="span3" type="password" placeholder="Password" />
     <button type="submit" class="btn info">Login</button>
   </form>
-  }
+}
+
+@authenticated(user: kcacup.models.User) = {
+<ul class="nav secondary-nav">
+  <li class="dropdown" data-dropdown="dropdown">
+    <a href="#" class="dropdown-toggle">@user.username</a>
+    <ul class="dropdown-menu">
+      <li><a href="@kcacup.controllers.routes.Auth.logout()">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+}
 
 @body = {
   <div class="topbar">
@@ -29,7 +40,7 @@
         <ul class="nav">
           <!--<li class="active"><a href="#">Home</a></li>-->
         </ul>
-        @user.map(_.username).getOrElse(loginForm)
+        @user.map(authenticated).getOrElse(loginForm)
       </div>
     </div>
 

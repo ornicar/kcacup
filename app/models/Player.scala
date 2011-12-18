@@ -6,7 +6,9 @@ import java.util.Date
 
 case class User (
 
-  @Key("_id") username: String,
+  @Key("_id") id: String,
+
+  username: String,
 
   passwordHash: String,
 
@@ -19,8 +21,12 @@ case class User (
 object User {
 
   def apply(username: String, password: String): User = User(
+    id = normalizeUsername(username),
     username = username,
     passwordHash = Hash encode password,
     createdAtDate = new Date
   )
+
+  def normalizeUsername(username: String) =
+    """[^\w]""".r.replaceAllIn(username.toLowerCase, "")
 }
