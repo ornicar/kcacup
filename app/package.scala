@@ -4,10 +4,8 @@ package object kcacup
   with    scalaz.MABs
   with    scalaz.MAs
   with    scalaz.Options
+  with    scalaz.Booleans
   with    Conversions {
-
-  // Represents a A computation that can have failed with Error
-  type Eithor[A] = Either[Error, A]
 
   /**
    * K combinator implementation

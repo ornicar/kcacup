@@ -1,0 +1,9 @@
+@(username: String, text: String = "")
+
+<a href="@kcacup.controllers.routes.User.view(username)">
+  @if(text == "") {
+    @username
+  } else {
+    @text
+  }
+</a>

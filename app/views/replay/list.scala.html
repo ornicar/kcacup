@@ -1,0 +1,13 @@
+@(replays: List[kcacup.models.Replay])
+
+@import kcacup.Templating._
+
+<table>
+  @for(replay <- replays) {
+  <tr>
+    <td>@user.link(replay.username)</td>
+    <td>@time(replay)</td>
+    <td>@formatDistance(replay.createdAt)</td>
+  </tr>
+  }
+</table>

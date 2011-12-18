@@ -1,0 +1,10 @@
+@(event: kcacup.models.Event)
+
+@import kcacup.Templating._
+
+<form class="send_replay" method="POST" action="@kcacup.controllers.routes.Replay.create(event.slug)" enctype="multipart/form-data">
+  <div class="clearfix">
+    <input type="file" name="replay" />
+    <button type="submit" class="btn success">Send a replay</button>
+  </div>
+</form>

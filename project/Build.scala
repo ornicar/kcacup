@@ -13,7 +13,9 @@ object ApplicationBuild extends Build {
     "org.scalaz" %% "scalaz-core" % "6.0.3",
     "org.slf4j" % "slf4j-nop" % "1.6.4",
     "com.twitter" % "util-core" % "1.12.4",
-    "com.roundeights" % "hasher" % "0.2" from "http://cloud.github.com/downloads/Nycto/Hasher/hasher_2.9.1-0.2.jar"
+    "com.roundeights" % "hasher" % "0.2" from "http://cloud.github.com/downloads/Nycto/Hasher/hasher_2.9.1-0.2.jar",
+    "commons-fileupload" % "commons-fileupload" % "1.2.2",
+    "commons-io" % "commons-io" % "2.1"
   )
 
   val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(

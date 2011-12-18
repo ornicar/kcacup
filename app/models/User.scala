@@ -13,7 +13,7 @@ case class User (
   passwordHash: String,
 
   createdAtDate: Date
-) {
+) extends Chronological {
 
   def comparePassword(p: String) = Hash.compare(p, passwordHash)
 }

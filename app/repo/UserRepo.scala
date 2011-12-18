@@ -22,6 +22,8 @@ class UserRepo(collection: MongoCollection)
     DBObject("_id" -> normalizeUsername(username))
   )
 
+  def apply(username: String) = findOneByUsername(username)
+
   def findOneLogin(username: String, password: String) = for {
     user <- findOneByUsername(username)
     if (user comparePassword password)

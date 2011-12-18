@@ -50,7 +50,7 @@ class Fixture(eventRepo: EventRepo, userRepo: UserRepo) {
           val (file: String, username: String) = a
           Replay(
             username = username,
-            file = PublicFile("rec/" + file),
+            file = PrivateFile("rec/" + file),
             createdAt = Time.now - (createdAt * 7).days + 3.days
           ).fold(e => { println(e); sys.exit() }, identity)
       }).toList

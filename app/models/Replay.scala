@@ -12,7 +12,7 @@ case class Replay(
 
   username: String,
 
-  file: PublicFile,
+  file: PrivateFile,
 
   createdAtDate: Date,
 
@@ -37,7 +37,7 @@ object Replay {
 
   def apply(
     username: String,
-    file: PublicFile,
+    file: PrivateFile,
     createdAt: Time
   ): Either[String, Replay] = for {
     infos <- parseFile(file)
@@ -50,7 +50,12 @@ object Replay {
     levelId = levelId
   )
 
-  private def parseFile(file: PublicFile): Either[String, (String, Double)] = {
+  def apply(
+    username: String,
+    file: PrivateFile
+  ): Either[String, Replay] = apply(username, file, Time.now)
+
+  private def parseFile(file: KcaFile): Either[String, (String, Double)] = {
 
     val process = Process("cpp/totorec", Seq(file.path))
 

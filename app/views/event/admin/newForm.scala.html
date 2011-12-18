@@ -4,7 +4,7 @@
 
 @admin.main("New Event") {
 
-  @form(action = kcacup.controllers.routes.EventAdmin.create()) {
-    @baseForm(eventForm, None)
-  }
+@form(action = kcacup.controllers.routes.EventAdmin.create(), 'enctype -> "multipart/form-data") {
+  @baseForm(eventForm, None)
+}
 }

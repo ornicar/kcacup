@@ -1,0 +1,30 @@
+@(me: Option[kcacup.models.User], user: kcacup.models.User, timeline: List[kcacup.models.Entry])
+
+@import kcacup.Templating._
+
+@main(user.username)(me) {
+
+<div class="page-header user_view">
+  <h1>
+    @user.username
+    <small>
+      arrived @formatDistance(user.createdAt)
+    </small>
+  </h1>
+</div>
+
+<div class="row user_view">
+  <div class="span10">
+    <h3>Times</h3>
+    <table>
+      @for(entry <- timeline) {
+      <tr>
+        <td>@event.link(entry.event)</td>
+        <td>@time(entry.replay)</td>
+        <td>@formatDistance(entry.replay.createdAt)</td>
+      </tr>
+      }
+    </table>
+  </div>
+</div>
+}

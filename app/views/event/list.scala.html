@@ -6,9 +6,7 @@
   @for(event <- events) {
     <tr>
       <td>
-        <a href="@kcacup.controllers.routes.Event.view(event.slug)">
-          @event.name
-        </a>
+        @link(event)
       </td>
       <td>
         @if(event.ended) {

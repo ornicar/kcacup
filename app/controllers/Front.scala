@@ -3,6 +3,7 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import play.api.mvc.Results._
 
 trait Front {
 
@@ -25,12 +26,14 @@ trait Front {
   /**
    * Action for authenticated users.
    */
-  def IsAuthenticated(f: => String => Request[AnyContent] => Result) =
-    Security.Authenticated(username, onUnauthorized) { user =>
-      Action(request => f(user)(request))
-    }
+  def Authenticated(f: models.User => Request[AnyContent] => Result) =
+    Action(request => user(request) some {
+      f(_)(request)
+    } none {
+      Unauthorized(views.html.defaultpages.unauthorized())
+    })
 
-  def Public(f: => Option[models.User] => Request[AnyContent] => Result) =
+  def Public(f: Option[models.User] => Request[AnyContent] => Result) =
     Action(request => f(user(request))(request))
 
   protected def redirectIndex =

@@ -1,4 +1,4 @@
-@(title: String)(user: Option[kcacup.models.User])(content: Html)
+@(title: String)(me: Option[kcacup.models.User])(content: Html)
 
 @metaTitle = {
   KcaCup - @title
@@ -21,11 +21,12 @@
   </form>
 }
 
-@authenticated(user: kcacup.models.User) = {
+@authenticated(me: kcacup.models.User) = {
 <ul class="nav secondary-nav">
   <li class="dropdown" data-dropdown="dropdown">
-    <a href="#" class="dropdown-toggle">@user.username</a>
+    <a href="#" class="dropdown-toggle">@me.username</a>
     <ul class="dropdown-menu">
+      <li>@user.link(me.username, "Profile")</li>
       <li><a href="@kcacup.controllers.routes.Auth.logout()">Logout</a></li>
     </ul>
   </li>
@@ -40,7 +41,7 @@
         <ul class="nav">
           <!--<li class="active"><a href="#">Home</a></li>-->
         </ul>
-        @user.map(authenticated).getOrElse(loginForm)
+        @me.map(authenticated).getOrElse(loginForm)
       </div>
     </div>
 

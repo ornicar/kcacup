@@ -33,3 +33,24 @@
 .level_view .btn.primary {
   margin-bottom: 7px;
 }
+
+.send_replay {
+  background-color: #eaeaea;
+  padding: 20px;
+	margin-bottom: 0;
+	margin-top: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.send_replay .clearfix {
+	margin-bottom: 0;
+}
+.send_replay button, .send_replay input {
+	float: left;
+	margin-bottom: 0;
+}
+.send_replay input {
+	width: auto;
+	margin-right: 10px;
+}

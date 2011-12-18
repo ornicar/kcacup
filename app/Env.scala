@@ -14,13 +14,13 @@ class Env(configuration: Configuration) {
 
   lazy val cupRepo = new CupRepo(mongodb("cup"))
 
-  lazy val replayRepo = new ReplayRepo(mongodb("replay"))
-
   lazy val userRepo = new UserRepo(mongodb("user"))
 
   lazy val loginForm = new LoginForm(userRepo)
 
   lazy val userForm = new UserForm(userRepo)
+
+  lazy val timeline = new Timeline(eventRepo)
 
   lazy val fixture = new Fixture(eventRepo, userRepo)
 

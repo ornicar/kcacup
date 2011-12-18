@@ -4,7 +4,7 @@
 
 @admin.main("Edit Event") {
 
-  @form(action = kcacup.controllers.routes.EventAdmin.update(event.slug)) {
+  @form(action = kcacup.controllers.routes.EventAdmin.update(event.slug), 'enctype -> "multipart/form-data") {
     @baseForm(eventForm, event.some)
   }
 }

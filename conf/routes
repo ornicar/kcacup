@@ -23,6 +23,8 @@ GET     /register                   kcacup.controllers.User.newForm()
 
 POST    /register                   kcacup.controllers.User.create()
 
+GET     /player/:username           kcacup.controllers.User.view(username: String)
+
 POST    /login                      kcacup.controllers.Auth.login()
 
 GET     /logout                     kcacup.controllers.Auth.logout()
@@ -30,6 +32,8 @@ GET     /logout                     kcacup.controllers.Auth.logout()
 #GET     /event                      kcacup.controllers.Event.index()
 
 GET     /event/:slug                kcacup.controllers.Event.view(slug: String)
+
+POST    /event/:slug/submit         kcacup.controllers.Replay.create(slug: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

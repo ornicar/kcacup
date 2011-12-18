@@ -36,9 +36,12 @@ case class Event(
 
   lazy val sortedReplays = replays sortBy (_.centis)
 
-  def recentReplays(nb: Int) = replays sortBy (_.createdAtDate) take nb
+  def recentReplays(nb: Int) = replays take nb
 
   def usernames = (replays map (_.username)).distinct
 
   def nbUsers = usernames.size
+
+  def withReplay(replay: Replay): Either[String, Event] =
+    (replay.levelId != level.id) either "Wrong level ID" or copy(replays = replay :: replays)
 }

@@ -9,16 +9,25 @@
   </div>
 }
 
+@file(name: String) = {
+<div class="clearfix ">
+  <label for="name">@name</label>
+  <div class="input">
+    <input type="file" name="@name">
+  </div>
+</div>
+}
+
 @actions
 @inputText(eventForm("name"), 'class -> "span10")(admin.bootstrapInput)
 @inputText(eventForm("text"), 'class -> "span8")(admin.bootstrapInput)
-@inputDate(eventForm("days"))(admin.bootstrapInput)
+@inputText(eventForm("days"))(admin.bootstrapInput)
 @event.map { e =>
   <div class="form_info">
     ID: @e.level.id, Name: @e.level.name, Objects: @e.level.nbObjects
   </div>
 }
-@inputText(eventForm("levelFile"))(admin.bootstrapInput)
+@file("levelFile")
 @event.map { e =>
   <img class="form_info" src="@routes.Assets.at(e.image.publicPath)" height="200" />
 }

@@ -8,9 +8,9 @@ import models._
 
 object Event extends Controller with Front {
 
-  def view(slug: String) = Public { user => request =>
+  def view(slug: String) = Public { me => request =>
     findEvent(slug) map { event =>
-      Ok(views.html.event.view(user, event))
+      Ok(views.html.event.view(me, event))
     } getOrElse BadRequest
   }
 
