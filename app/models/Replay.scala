@@ -31,6 +31,12 @@ case class Replay(
     (centis%6000)/100,
     centis%100
   )
+
+  def same(replay: Replay) =
+    this.username == replay.username &&
+    this.file.name == replay.file.name &&
+    this.centis == replay.centis &&
+    this.levelId == replay.levelId
 }
 
 object Replay {
@@ -74,7 +80,7 @@ object Replay {
           }
         }
       }
-      case x => (file.path + " Exit: " + x).left
+      case x => ("Invalid replay: " + file.name).left
     }
   }
 }

@@ -19,7 +19,7 @@ object FileUploadContent {
 
   import play.api.http.HeaderNames._
 
-  private val repo = new java.io.File("var/uploads")
+  private val repo = new java.io.File("var/upload")
   repo.mkdirs()
   lazy val fileUpload = new FileUpload(new DiskFileItemFactory(DiskFileItemFactory.DEFAULT_SIZE_THRESHOLD, repo))
 

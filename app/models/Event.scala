@@ -43,5 +43,9 @@ case class Event(
   def nbUsers = usernames.size
 
   def withReplay(replay: Replay): Either[String, Event] =
-    (replay.levelId != level.id) either "Wrong level ID" or copy(replays = replay :: replays)
+    (replay.levelId != level.id).fold("Wrong level ID".left, {
+      (replays exists (_ same replay)) either {
+        "This replay already exists"
+      } or copy(replays = replay :: replays)
+    })
 }

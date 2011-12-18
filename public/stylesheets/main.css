@@ -35,13 +35,7 @@
 }
 
 .send_replay {
-  background-color: #eaeaea;
-  padding: 20px;
-	margin-bottom: 0;
 	margin-top: 10px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
 }
 .send_replay .clearfix {
 	margin-bottom: 0;

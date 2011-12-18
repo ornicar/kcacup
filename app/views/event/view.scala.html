@@ -1,4 +1,4 @@
-@(me: Option[kcacup.models.User], event: kcacup.models.Event)
+@(me: Option[kcacup.models.User], event: kcacup.models.Event, error: Option[String] = None)
 
 @import kcacup.Templating._
 @import helper._
@@ -29,7 +29,7 @@
 <div class="row level_view">
   <div class="span10">
     <img class="level_image" src="@routes.Assets.at(event.image.publicPath)" width="568px" />
-    @me.map { u => @replay.newForm(event) }
+    @me.map { u => @replay.newForm(event, error) }
     <h3>Recent Times</h3>
     @replay.list(event.recentReplays(30))
   </div>
